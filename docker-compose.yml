@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgis/postgis:${POSTGIS_VERSION_TAG}
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - ${POSTGRES_PORT}:5432
+
+  pgadmin4:
+    image: dpage/pgadmin4:${PGADMIN_VERSION_TAG}
+    restart: always
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+    ports:
+      - ${PGADMIN_PORT}:80
+
+  qgis-server:
+    image: camptocamp/qgis-server
+    ports:
+      - 8080:80
+    volumes:
+      - ./qgis_projects:/etc/qgisserver
+    environment:
+      - QGIS_SERVER_LANDING_PAGE_PROJECTS_DIRECTORIES=/etc/qgisserver
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  pgadmin_data:
