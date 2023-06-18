@@ -26,7 +26,7 @@ services:
   qgis-server:
     image: camptocamp/qgis-server
     ports:
-      - 8080:80
+      - 8380:80
     volumes:
       - ./qgis_projects:/etc/qgisserver
     environment:
