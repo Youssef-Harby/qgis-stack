@@ -1,0 +1,18 @@
+{
+    acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+# syncthing
+syncthing.example.com {
+    reverse_proxy syncthing:8384
+}
+
+# pgadmin4
+pgadmin4.example.com {
+    reverse_proxy pgadmin4:80
+}
+
+# qgis-server
+api.example.com {
+    reverse_proxy qgis-server:80
+}
