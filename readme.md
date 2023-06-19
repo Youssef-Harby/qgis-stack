@@ -55,7 +55,36 @@ By default, the provided configuration in this repository uses placeholder domai
 - `make copy-demo`: Copies the content of the `Sync` directory to the `syncthing` service.
 - `make down`: Stops the stack using Docker Compose.
 
-1. Any new edits on `Caddyfile` you will need to restart the Caddy server (container) to apply the new configuration.
+**NOTE**: Any new edits on `Caddyfile` you will need to restart the Caddy server (container) to apply the new configuration.
+
+# Syncthing Configuration
+
+This tutorial guides you through setting up Syncthing to synchronize files between two devices, referred to as the "local device" and the "remote device." It's recommended to install and configure Syncthing on both devices simultaneously, but it's okay if you can't access both at the same time.
+
+### Setting Up Folders
+
+1. Syncthing sets up a folder called `Default Folder` in a directory named `Sync` in your home directory upon the first start.
+2. The admin GUI is available at `https://syncthing.example.com/`. On the left is a list of folders (directories to synchronize), and on the right is a list of devices. The `Default Folder` is marked as "Unshared" initially because it's not shared with any other device.
+
+![Admin GUI](https://docs.syncthing.net/_images/gs1.png)
+
+### Adding Remote Devices
+
+1. To synchronize files with another device, exchange "device IDs." A device ID is a unique identifier generated when you first start Syncthing. Find it in the web GUI under "Actions" > "Show ID".
+
+![Device ID](https://docs.syncthing.net/_images/gs2.png)
+
+2. Click "Add Remote Device" and enter the other device's ID. Also, select the folder(s) you want to share. The device name is optional.
+
+![Adding Remote Device](https://docs.syncthing.net/_images/gs3.png)
+
+3. After clicking "Save," the new device will appear on the right side of the GUI. It will connect within a minute or so. Now, adding files to the shared directory on either device will synchronize those files to the other side.
+
+![Connected Devices](https://docs.syncthing.net/_images/gs5.png)
+
+## Support and Contributions
+
+For additional support, refer to the [Community Contributions](https://syncthing.net/contributions/) page.
 
 ## Contributing
 
